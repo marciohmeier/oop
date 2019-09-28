@@ -1,0 +1,15 @@
+{
+  "name": "zoologico",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "tsc && node ./bin/index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
