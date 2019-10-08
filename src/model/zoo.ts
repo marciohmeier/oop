@@ -11,6 +11,14 @@ export class Zoo {
     this.listOfCage = []
   }
 
+  public setName(name : string) : void{
+    this.name = name;
+  }
+
+  public getName() : string{
+    return this.name;
+  }
+
   public addCageToZoo(cage : Cage) : StatusCode {
 
     let status = cage.validateCage()
@@ -30,6 +38,15 @@ export class Zoo {
         return status
       }
     }
-    return new StatusCode(false, `Animal ${typeof animal} cannot be added to the zoo because it has no available cage`)
+    return new StatusCode(false, `Animal ${animal.getClassName()} (${animal.getName()}) cannot be added to the zoo because it has no available cage`)
+  }
+
+  public toString() : string {
+
+    return `Zoo Name: ${this.getName()}
+Cage Quantity in Zoo: ${this.listOfCage.length}
+Type of Animal acceptable: ${this.listOfCage.map((cage : Cage, i :number) => {return cage.getAnimalTypeToString()}).toString().replace(/,/g, ", ")}
+-----------------\nCages\n-----------------\n
+${this.listOfCage.map((cage : Cage, i :number) => {return `\rCage ${i+1}:\n\r\t${cage.toString()}`}).toString().replace(/,/g, "")}`
   }
 }

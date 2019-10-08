@@ -39,9 +39,12 @@ var Cage = /** @class */ (function () {
         return new statusCode_1.StatusCode(true, "Animal added with success");
     };
     Cage.prototype.toString = function () {
-        return "The cage capacity: " + this.maxCapacity + "\nType of animal: " + this.animalType.name + "\n\nAnimalList:\n\n    " + this.animalsList.map(function (animal, i) {
+        return "\rThe cage capacity: " + this.maxCapacity + "\nType of animal: " + this.getAnimalTypeToString() + "\n\nCage's Animal List:\n\n    " + this.animalsList.map(function (animal, i) {
             return "\tAnimal " + (i + 1) + ":\n" + animal.toString() + "\n\n";
-        }).toString().replace(",", "") + "\n      ";
+        }).toString().replace(/,/g, "") + "\n      ";
+    };
+    Cage.prototype.getAnimalTypeToString = function () {
+        return this.animalType.name;
     };
     return Cage;
 }());

@@ -42,6 +42,7 @@ export class Cage {
   }
 
   public addAnimalToCage(animal : Animal) : StatusCode {
+
     if (!(animal instanceof this.getAnimalType())) {
       return new StatusCode(false, `Animal ${typeof animal} is not allowed in this cage`)
     }
@@ -55,11 +56,15 @@ export class Cage {
   }
 
   public toString() : string {
-    return `The cage capacity: ${this.maxCapacity}\nType of animal: ${ this.animalType.name }\n\nAnimalList:
+    return `\rThe cage capacity: ${this.maxCapacity}\nType of animal: ${ this.getAnimalTypeToString() }\n\nCage's Animal List:
 
     ${this.animalsList.map((animal : Animal, i :number) => {
       return `\tAnimal ${i+1}:\n${animal.toString()}\n\n`
-    }).toString().replace(",","")}
+    }).toString().replace(/,/g,"")}
       `
+  }
+
+  public getAnimalTypeToString() : string{
+    return this.animalType.name;
   }
 }
